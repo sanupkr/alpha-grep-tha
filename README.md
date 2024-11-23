@@ -15,3 +15,10 @@ Different csv files are presented in multiple tabs
 Data from csv is presented in a tabular format with pagination and sorting functionality
 
 User can choose to add a new csv and visualize its content under same sub folder
+
+
+Steps to run application:-
+
+1. `npm i` to install dependencies
+
+2. `npm run dev` to run in local dev environment

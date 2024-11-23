@@ -1,50 +1,17 @@
-# React + TypeScript + Vite
+DYNAMIC DASHBOARD USING React.js, Tailwindcss(Styling) and Shadcn(Component Library)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+In Home page, we will get to see all the sub folders in a tabular format
 
-Currently, two official plugins are available:
+We can choose to update the status of sub folder in order to mark it as inactive
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tags can be corresponding to each sub folder in order to narrow down search by apply filter
 
-## Expanding the ESLint configuration
+On Click of a particular sub folder user will be redirected to a dedicated reports page
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Reports page will contain all the csv files associated with that sub folder
 
-- Configure the top-level `parserOptions` property like this:
+Different csv files are presented in multiple tabs
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Data from csv is presented in a tabular format with pagination and sorting functionality
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+User can choose to add a new csv and visualize its content under same sub folder

@@ -4,7 +4,9 @@ import { folderStructure } from "../data/folder-structure";
 import { parseCSV } from "../utils/parse-csv";
 
 const CSVTable = (props:any) => {
-    const [data,setData] = useState([]);
+    const [data,setData] = useState<any>([]);
+    const [filteredData,setFilteredData] = useState<any>([]);
+    const [query,setQuery] = useState("");
     const columns = useMemo(() => {
         if (data.length === 0) return [];
         return Object.keys(data[0]).map((key) => ({
@@ -19,11 +21,13 @@ const CSVTable = (props:any) => {
             const filePath = `../../public/csv/${currFolder.name}/${props?.fileName}`;
             const parsedData = await parseCSV(filePath);
             setData(parsedData);
+            setFilteredData([...parsedData]);
         };
         if(!props?.data){
             loadFolderData();
         }else{
-            setData(props?.data);
+          setData(props?.data);
+          setFilteredData([...props?.data]);
         }
     },[])
 
@@ -50,10 +54,28 @@ const CSVTable = (props:any) => {
     usePagination
   );
 
-  console.log(data);
+  const hasMatch = (row:any,cols:any,query:string)=>{
+    for(let col of cols){
+      if(row?.[col?.Header]?.toString()?.toLowerCase().includes(query?.toLowerCase())){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  const handleQueryChange = (e:any)=>{
+    const query = e?.target?.value;
+    let copyFilteredData = [...filteredData];
+    const colNames = headerGroups[0]?.headers;
+    if(colNames?.length)copyFilteredData = copyFilteredData?.filter((row)=>hasMatch(row,colNames,query));
+    setData([...copyFilteredData]);
+  }
 
   return (
     <div className="mb-8">
+      <div className="mb-2">
+        <input className="py-2 outline-none h-6 border-b-2" type="text" placeholder="Enter Search Query" onChange={handleQueryChange} />
+      </div>
       <table {...getTableProps()} className="min-w-full border">
         <thead>
           {headerGroups.map((headerGroup:any) => (

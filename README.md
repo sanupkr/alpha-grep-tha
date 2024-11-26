@@ -12,7 +12,7 @@ Reports page will contain all the csv files associated with that sub folder
 
 Different csv files are presented in multiple tabs
 
-Data from csv is presented in a tabular format with pagination and sorting functionality
+Data from csv is presented in a tabular format with pagination, sorting and search functionality
 
 User can choose to add a new csv and visualize its content under same sub folder
 
